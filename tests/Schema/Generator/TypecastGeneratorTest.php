@@ -28,6 +28,7 @@ abstract class TypecastGeneratorTest extends BaseTest
         $this->assertSame('int', $schema['user'][Schema::TYPECAST]['p_id']);
         $this->assertSame('float', $schema['user'][Schema::TYPECAST]['p_balance']);
         $this->assertSame('datetime', $schema['user'][Schema::TYPECAST]['p_created_at']);
+        $this->assertSame('string', $schema['user'][Schema::TYPECAST]['p_name']);
 
         $this->assertTrue(in_array($schema['user'][Schema::TYPECAST]['p_id'], ['int', 'bool']));
     }
