@@ -73,6 +73,10 @@ final class GenerateTypecast implements GeneratorInterface
             return 'datetime';
         }
 
+        if ($column->getType() === AbstractColumn::STRING) {
+            return 'string';
+        }
+
         return null;
     }
 }
