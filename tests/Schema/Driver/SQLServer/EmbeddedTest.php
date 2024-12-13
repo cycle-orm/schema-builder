@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\SQLServer;
 
 use Cycle\Schema\Tests\Relation\EmbeddedTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-sqlserver
+ */
 class EmbeddedTest extends BaseTest
 {
     public const DRIVER = 'sqlserver';

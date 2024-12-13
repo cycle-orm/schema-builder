@@ -6,7 +6,11 @@ namespace Cycle\Schema\Tests\Driver\MySQL;
 
 use Cycle\Schema\Tests\Generator\PrintChangesTest as BaseTest;
 
-final class PrintChangesTest extends BaseTest
+/**
+ * @group driver
+ * @group driver-mysql
+ */
+class PrintChangesTest extends BaseTest
 {
     public const DRIVER = 'mysql';
 }

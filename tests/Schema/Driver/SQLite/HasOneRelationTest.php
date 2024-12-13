@@ -14,6 +14,10 @@ use Cycle\Schema\Tests\Fixtures\Plain;
 use Cycle\Schema\Tests\Fixtures\User;
 use Cycle\Schema\Tests\Relation\HasOneRelationTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-sqlite
+ */
 class HasOneRelationTest extends BaseTest
 {
     public const DRIVER = 'sqlite';

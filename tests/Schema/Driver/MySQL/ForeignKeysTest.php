@@ -6,7 +6,11 @@ namespace Cycle\Schema\Tests\Driver\MySQL;
 
 use Cycle\Schema\Tests\Generator\ForeignKeysTest as BaseTest;
 
-final class ForeignKeysTest extends BaseTest
+/**
+ * @group driver
+ * @group driver-mysql
+ */
+class ForeignKeysTest extends BaseTest
 {
     public const DRIVER = 'mysql';
 }
