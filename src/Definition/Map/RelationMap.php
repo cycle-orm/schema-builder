@@ -6,7 +6,6 @@ namespace Cycle\Schema\Definition\Map;
 
 use Cycle\Schema\Definition\Relation;
 use Cycle\Schema\Exception\RelationException;
-use Traversable;
 
 /**
  * @implements \IteratorAggregate<string, Relation>
@@ -15,13 +14,6 @@ final class RelationMap implements \IteratorAggregate
 {
     /** @var array<string, Relation> */
     private array $relations = [];
-
-    public function __clone()
-    {
-        foreach ($this->relations as $name => $relation) {
-            $this->relations[$name] = clone $relation;
-        }
-    }
 
     public function has(string $name): bool
     {
@@ -55,10 +47,17 @@ final class RelationMap implements \IteratorAggregate
     }
 
     /**
-     * @return Traversable<string, Relation>
+     * @return \Traversable<string, Relation>
      */
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->relations);
+    }
+
+    public function __clone()
+    {
+        foreach ($this->relations as $name => $relation) {
+            $this->relations[$name] = clone $relation;
+        }
     }
 }

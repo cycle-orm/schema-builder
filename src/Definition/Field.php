@@ -34,7 +34,6 @@ final class Field
     private array|string|null $typecast = null;
 
     private ?int $generated = null;
-
     private bool $referenced = false;
     private ?string $entityClass = null;
 
@@ -42,12 +41,6 @@ final class Field
     {
         $this->options = new OptionMap();
         $this->attributes = new OptionMap();
-    }
-
-    public function __clone()
-    {
-        $this->options = clone $this->options;
-        $this->attributes = clone $this->attributes;
     }
 
     public function getOptions(): OptionMap
@@ -105,9 +98,9 @@ final class Field
     }
 
     /**
+     * @return non-empty-string
      * @throws FieldException
      *
-     * @return non-empty-string
      */
     public function getColumn(): string
     {
@@ -178,5 +171,11 @@ final class Field
         $this->entityClass = $entityClass;
 
         return $this;
+    }
+
+    public function __clone()
+    {
+        $this->options = clone $this->options;
+        $this->attributes = clone $this->attributes;
     }
 }

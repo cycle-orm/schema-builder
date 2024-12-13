@@ -103,7 +103,7 @@ abstract class HasManyRelationTest extends BaseTest
 
         $this->assertSame(
             ArrayCollectionFactory::class,
-            $schema['user'][Schema::RELATIONS]['plain'][Relation::SCHEMA][Relation::COLLECTION_TYPE]
+            $schema['user'][Schema::RELATIONS]['plain'][Relation::SCHEMA][Relation::COLLECTION_TYPE],
         );
     }
 
@@ -230,17 +230,17 @@ abstract class HasManyRelationTest extends BaseTest
 
         $this->assertSame(
             'user',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['p_id'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             'user_p_id',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 
@@ -268,17 +268,17 @@ abstract class HasManyRelationTest extends BaseTest
 
         $this->assertSame(
             'user',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['p_id'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             'user_p_id',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 

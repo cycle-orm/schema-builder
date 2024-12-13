@@ -13,11 +13,6 @@ final class OptionMap implements \IteratorAggregate
 {
     private array $options = [];
 
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
     public function has(string $name): bool
     {
         return array_key_exists($name, $this->options);

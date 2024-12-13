@@ -11,18 +11,16 @@ use Cycle\Schema\Registry;
 final class ValidateEntities implements GeneratorInterface
 {
     /**
-     * @param Registry $registry
      *
      * @throws EntityException
      *
-     * @return Registry
      */
     public function run(Registry $registry): Registry
     {
         foreach ($registry->getIterator() as $entity) {
             if (count($entity->getFields()) === 0) {
                 throw new EntityException(
-                    "Entity `{$entity->getRole()}` is empty"
+                    "Entity `{$entity->getRole()}` is empty",
                 );
             }
         }

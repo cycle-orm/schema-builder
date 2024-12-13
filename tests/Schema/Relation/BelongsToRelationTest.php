@@ -224,17 +224,17 @@ abstract class BelongsToRelationTest extends BaseTest
 
         $this->assertSame(
             'post',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET],
         );
 
         $this->assertSame(
             'author_p_id',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['p_id'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 
@@ -261,17 +261,17 @@ abstract class BelongsToRelationTest extends BaseTest
 
         $this->assertSame(
             'post',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET],
         );
 
         $this->assertSame(
             'author_p_id',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['p_id'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 

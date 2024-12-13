@@ -151,7 +151,7 @@ abstract class RelationSchema implements RelationInterface
         array $columns,
         bool $strictOrder = true,
         bool $withSorting = true,
-        bool $unique = null
+        ?bool $unique = null,
     ): bool {
         if ($strictOrder && $withSorting && $unique === null) {
             return $table->hasIndex($columns);

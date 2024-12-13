@@ -386,9 +386,6 @@ abstract class ColumnTest extends BaseTest
         ];
     }
 
-    /**
-     * @return AbstractTable
-     */
     protected function getStub(): AbstractTable
     {
         return $this->dbal->database('default')->table('sample')->getSchema();

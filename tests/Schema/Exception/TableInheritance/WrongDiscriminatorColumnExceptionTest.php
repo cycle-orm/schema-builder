@@ -23,11 +23,11 @@ class WrongDiscriminatorColumnExceptionTest extends TestCase
 
         $this->assertSame(
             'Discriminator column is not found among the entity fields.',
-            $e->getName()
+            $e->getName(),
         );
         $this->assertSame(
             'You have to specify one of the defined fields of the `author` role: `id`, `name`',
-            $e->getSolution()
+            $e->getSolution(),
         );
     }
 }

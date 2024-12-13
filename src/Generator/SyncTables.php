@@ -18,11 +18,9 @@ final class SyncTables implements GeneratorInterface
     public const READONLY_SCHEMA = 'readonlySchema';
 
     /**
-     * @param Registry $registry
      *
      * @throws SyncException
      *
-     * @return Registry
      */
     public function run(Registry $registry): Registry
     {
@@ -51,11 +49,6 @@ final class SyncTables implements GeneratorInterface
         return $registry;
     }
 
-    /**
-     * @param Registry $registry
-     *
-     * @return array
-     */
     private function getRegistryDbList(Registry $registry): array
     {
         $databases = [];

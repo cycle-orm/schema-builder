@@ -28,7 +28,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $r = new Registry($this->dbal);
@@ -50,7 +50,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $r = new Registry($this->dbal);
@@ -69,7 +69,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $r = new Registry($this->dbal);
@@ -83,12 +83,12 @@ abstract class EmbeddedTest extends BaseTest
         $this->assertArrayHasKey('embedded', $schema['composite'][Schema::RELATIONS]);
         $this->assertSame(
             \Cycle\ORM\Relation::EMBEDDED,
-            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::TYPE]
+            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::TYPE],
         );
 
         $this->assertSame(
             \Cycle\ORM\Relation::LOAD_EAGER,
-            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::LOAD]
+            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::LOAD],
         );
 
         $this->assertArrayHasKey('composite:embedded:embedded', $schema);
@@ -111,7 +111,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $c->getRelations()->get('embedded')->getOptions()->set('load', 'lazy');
@@ -127,12 +127,12 @@ abstract class EmbeddedTest extends BaseTest
         $this->assertArrayHasKey('embedded', $schema['composite'][Schema::RELATIONS]);
         $this->assertSame(
             \Cycle\ORM\Relation::EMBEDDED,
-            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::TYPE]
+            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::TYPE],
         );
 
         $this->assertSame(
             \Cycle\ORM\Relation::LOAD_PROMISE,
-            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::LOAD]
+            $schema['composite'][Schema::RELATIONS]['embedded'][\Cycle\ORM\Relation::LOAD],
         );
 
         $this->assertArrayHasKey('composite:embedded:embedded', $schema);
@@ -153,7 +153,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $c->getRelations()->get('embedded')->getOptions()->set('load', 'lazy');
@@ -186,7 +186,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $r = new Registry($this->dbal);
@@ -202,7 +202,7 @@ abstract class EmbeddedTest extends BaseTest
                 new GenerateRelations(['embedded' => new Embedded()]),
                 $t = new RenderTables(),
                 new RenderRelations(),
-            ]
+            ],
         );
     }
 
@@ -213,7 +213,7 @@ abstract class EmbeddedTest extends BaseTest
 
         $c->getRelations()->set(
             'embedded',
-            (new Relation())->setTarget('embedded')->setType('embedded')
+            (new Relation())->setTarget('embedded')->setType('embedded'),
         );
 
         $c->getRelations()->get('embedded')->getOptions()->set('embeddedPrefix', 'prefix_');

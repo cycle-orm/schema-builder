@@ -23,11 +23,11 @@ class WrongParentKeyColumnExceptionTest extends TestCase
 
         $this->assertSame(
             'Outer key column is not found among parent entity fields.',
-            $e->getName()
+            $e->getName(),
         );
         $this->assertSame(
             'You have to specify one of the defined fields of the `author` role: `id`, `name`',
-            $e->getSolution()
+            $e->getSolution(),
         );
     }
 }

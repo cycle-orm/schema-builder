@@ -13,11 +13,6 @@ use Cycle\Schema\Registry;
  */
 final class RenderRelations implements GeneratorInterface
 {
-    /**
-     * @param Registry $registry
-     *
-     * @return Registry
-     */
     public function run(Registry $registry): Registry
     {
         foreach ($registry as $entity) {
@@ -27,10 +22,6 @@ final class RenderRelations implements GeneratorInterface
         return $registry;
     }
 
-    /**
-     * @param Registry $registry
-     * @param Entity   $entity
-     */
     protected function compute(Registry $registry, Entity $entity): void
     {
         foreach ($registry->getRelations($entity) as $relation) {

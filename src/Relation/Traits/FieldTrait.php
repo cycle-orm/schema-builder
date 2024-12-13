@@ -26,10 +26,10 @@ trait FieldTrait
                     'Field `%s`.`%s` does not exists, referenced by `%s`',
                     $entity->getRole() ?? 'unknown',
                     $this->getOptions()->get($field),
-                    $this->source
+                    $this->source,
                 ),
                 $e->getCode(),
-                $e
+                $e,
             );
         }
     }
@@ -37,7 +37,7 @@ trait FieldTrait
     protected function getFields(Entity $entity, int $option): FieldMap
     {
         $fields = new FieldMap();
-        $keys = (array)$this->getOptions()->get($option);
+        $keys = (array) $this->getOptions()->get($option);
 
         foreach ($keys as $key) {
             try {
@@ -48,10 +48,10 @@ trait FieldTrait
                         'Field `%s`.`%s` does not exists, referenced by `%s`.',
                         $entity->getRole() ?? 'unknown',
                         $key,
-                        $this->source
+                        $this->source,
                     ),
                     $e->getCode(),
-                    $e
+                    $e,
                 );
             }
         }
@@ -63,10 +63,10 @@ trait FieldTrait
         Entity $source,
         int $sourceKey,
         Entity $target,
-        int $targetKey
+        int $targetKey,
     ): void {
         $sourceFields = $this->getFields($source, $sourceKey);
-        $targetColumns = (array)$this->options->get($targetKey);
+        $targetColumns = (array) $this->options->get($targetKey);
 
         $sourceFieldNames = $sourceFields->getNames();
 
@@ -78,8 +78,8 @@ trait FieldTrait
                     $source->getRole() ?? 'unknown',
                     implode('`, `', $this->getFields($source, $sourceKey)->getColumnNames()),
                     $target->getRole() ?? 'unknown',
-                    implode('`, `', $targetColumns)
-                )
+                    implode('`, `', $targetColumns),
+                ),
             );
         }
 
@@ -91,7 +91,7 @@ trait FieldTrait
                 $target,
                 $targetColumn,
                 $sourceField,
-                $this->options->get(Relation::NULLABLE)
+                $this->options->get(Relation::NULLABLE),
             );
         }
     }
@@ -102,7 +102,7 @@ trait FieldTrait
     protected function normalizeContextFields(
         Entity $source,
         Entity $target,
-        array $keys = ['innerKey', 'outerKey']
+        array $keys = ['innerKey', 'outerKey'],
     ): void {
         foreach ($keys as $key) {
             $options = $this->options->getOptions();
@@ -111,7 +111,7 @@ trait FieldTrait
                 continue;
             }
 
-            $columns = (array)$options[$key];
+            $columns = (array) $options[$key];
 
             foreach ($columns as $i => $column) {
                 $entity = $key === 'innerKey' ? $source : $target;

@@ -58,7 +58,7 @@ final class RefersTo extends RelationSchema
             $target,
             Relation::OUTER_KEY,
             $source,
-            Relation::INNER_KEY
+            Relation::INNER_KEY,
         );
     }
 
@@ -83,7 +83,7 @@ final class RefersTo extends RelationSchema
                 $source,
                 $outerFields,
                 $innerFields,
-                $this->options->get(self::INDEX_CREATE)
+                $this->options->get(self::INDEX_CREATE),
             );
         }
     }

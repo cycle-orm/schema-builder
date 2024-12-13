@@ -40,7 +40,7 @@ abstract class GenerateRelationsTest extends BaseTest
     public function testHasManyToManyRelationOptions(
         string $optionKey,
         array|string $optionValue,
-        int $relationKey
+        int $relationKey,
     ): void {
         $post = Post::define();
         $tag = Tag::define();
@@ -53,8 +53,8 @@ abstract class GenerateRelationsTest extends BaseTest
             ->setType('manyToMany')
             ->setTarget('tag')
             ->getOptions()
-                ->set('though', 'tagContext')
-                ->set($optionKey, $optionValue);
+            ->set('though', 'tagContext')
+            ->set($optionKey, $optionValue);
 
         $r = new Registry($this->dbal);
         $r->register($post)->linkTable($post, 'default', 'post');
@@ -67,7 +67,7 @@ abstract class GenerateRelationsTest extends BaseTest
         // phpcs:ignore
         $this->assertSame(
             $optionValue,
-            $schema['post'][SchemaInterface::RELATIONS]['tags'][Relation::SCHEMA][$relationKey]
+            $schema['post'][SchemaInterface::RELATIONS]['tags'][Relation::SCHEMA][$relationKey],
         );
     }
 
@@ -93,7 +93,7 @@ abstract class GenerateRelationsTest extends BaseTest
         // phpcs:ignore
         $this->assertSame(
             $optionValue,
-            $schema['user'][SchemaInterface::RELATIONS]['plain'][Relation::SCHEMA][$relationKey]
+            $schema['user'][SchemaInterface::RELATIONS]['plain'][Relation::SCHEMA][$relationKey],
         );
     }
 
@@ -124,7 +124,7 @@ abstract class GenerateRelationsTest extends BaseTest
             $this->assertInstanceOf(RelationException::class, $e->getPrevious());
             $this->assertStringContainsString(
                 'Relation ManyToMany must have the throughEntity declaration',
-                $e->getPrevious()->getMessage()
+                $e->getPrevious()->getMessage(),
             );
             throw $e;
         }

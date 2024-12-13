@@ -16,8 +16,7 @@ final class PrintChanges implements GeneratorInterface
 
     public function __construct(
         private OutputInterface $output,
-    ) {
-    }
+    ) {}
 
     public function run(Registry $registry): Registry
     {

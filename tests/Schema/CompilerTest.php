@@ -21,16 +21,33 @@ use PHPUnit\Framework\TestCase;
 
 final class CompilerTest extends TestCase
 {
+    public static function renderTypecastDataProvider(): \Traversable
+    {
+        yield [null, []];
+        yield [Typecaster::class, [], Typecaster::class];
+        yield [[Typecaster::class], [SchemaInterface::TYPECAST_HANDLER => Typecaster::class]];
+        yield [
+            [Typecaster::class, Typecast::class],
+            [SchemaInterface::TYPECAST_HANDLER => Typecast::class],
+            Typecaster::class,
+        ];
+        yield [
+            [Typecaster::class, Typecast::class],
+            [SchemaInterface::TYPECAST_HANDLER => [Typecaster::class, Typecast::class]],
+            Typecaster::class,
+        ];
+    }
+
     public function testWrongGeneratorShouldThrowAnException(): void
     {
         $this->expectException(CompilerException::class);
         $this->expectExceptionMessage(
             'Invalid generator `\'Cycle\\\\Schema\\\\Tests\\\\Fixtures\\\\Author\'`. '
-            . 'It should implement `Cycle\Schema\GeneratorInterface` interface.'
+            . 'It should implement `Cycle\Schema\GeneratorInterface` interface.',
         );
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $author = new Entity();
@@ -49,11 +66,11 @@ final class CompilerTest extends TestCase
         $this->expectException(SchemaModifierException::class);
         $this->expectExceptionMessage(
             'Unable to apply schema modifier `Cycle\Schema\Tests\Fixtures\BrokenSchemaModifier` '
-            . 'for the `author` role. Something went wrong'
+            . 'for the `author` role. Something went wrong',
         );
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $author = new Entity();
@@ -96,23 +113,23 @@ final class CompilerTest extends TestCase
         $entity->getFields()->set(
             'createdAt',
             (new Field())
-            ->setType('datetime')
-            ->setColumn('created_at')
-            ->setGenerated(GeneratedField::BEFORE_INSERT)
+                ->setType('datetime')
+                ->setColumn('created_at')
+                ->setGenerated(GeneratedField::BEFORE_INSERT),
         );
         $entity->getFields()->set(
             'updatedAt',
             (new Field())
-            ->setType('datetime')
-            ->setColumn('created_at')
-            ->setGenerated(GeneratedField::BEFORE_INSERT | GeneratedField::BEFORE_UPDATE)
+                ->setType('datetime')
+                ->setColumn('created_at')
+                ->setGenerated(GeneratedField::BEFORE_INSERT | GeneratedField::BEFORE_UPDATE),
         );
         $entity->getFields()->set(
             'sequence',
             (new Field())
-            ->setType('serial')
-            ->setColumn('some_sequence')
-            ->setGenerated(GeneratedField::ON_INSERT)
+                ->setType('serial')
+                ->setColumn('some_sequence')
+                ->setGenerated(GeneratedField::ON_INSERT),
         );
 
         $r = new Registry($this->createMock(DatabaseProviderInterface::class));
@@ -125,22 +142,5 @@ final class CompilerTest extends TestCase
             'updatedAt' => GeneratedField::BEFORE_INSERT | GeneratedField::BEFORE_UPDATE,
             'sequence' => GeneratedField::ON_INSERT,
         ], $schema['author'][SchemaInterface::GENERATED_FIELDS]);
-    }
-
-    public static function renderTypecastDataProvider(): \Traversable
-    {
-        yield [null, []];
-        yield [Typecaster::class, [], Typecaster::class];
-        yield [[Typecaster::class], [SchemaInterface::TYPECAST_HANDLER => Typecaster::class]];
-        yield [
-            [Typecaster::class, Typecast::class],
-            [SchemaInterface::TYPECAST_HANDLER => Typecast::class],
-            Typecaster::class,
-        ];
-        yield [
-            [Typecaster::class, Typecast::class],
-            [SchemaInterface::TYPECAST_HANDLER => [Typecaster::class, Typecast::class]],
-            Typecaster::class,
-        ];
     }
 }

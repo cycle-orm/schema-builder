@@ -54,9 +54,6 @@ final class HasMany extends RelationSchema implements InversableInterface
         RelationSchema::FK_ON_DELETE => null,
     ];
 
-    /**
-     * @param Registry $registry
-     */
     public function compute(Registry $registry): void
     {
         parent::compute($registry);
@@ -71,13 +68,10 @@ final class HasMany extends RelationSchema implements InversableInterface
             $source,
             Relation::INNER_KEY,
             $target,
-            Relation::OUTER_KEY
+            Relation::OUTER_KEY,
         );
     }
 
-    /**
-     * @param Registry $registry
-     */
     public function render(Registry $registry): void
     {
         $source = $registry->getEntity($this->source);
@@ -99,13 +93,12 @@ final class HasMany extends RelationSchema implements InversableInterface
                 $target,
                 $innerFields,
                 $outerFields,
-                $this->options->get(self::INDEX_CREATE)
+                $this->options->get(self::INDEX_CREATE),
             );
         }
     }
 
     /**
-     * @param Registry $registry
      *
      * @return Entity[]
      */
@@ -117,13 +110,9 @@ final class HasMany extends RelationSchema implements InversableInterface
     }
 
     /**
-     * @param RelationInterface $relation
-     * @param string $into
-     * @param int|null $load
      *
      * @throws RelationException
      *
-     * @return RelationInterface
      */
     public function inverseRelation(RelationInterface $relation, string $into, ?int $load = null): RelationInterface
     {
@@ -143,7 +132,7 @@ final class HasMany extends RelationSchema implements InversableInterface
                 Relation::LOAD => $load,
                 Relation::INNER_KEY => $this->options->get(Relation::OUTER_KEY),
                 Relation::OUTER_KEY => $this->options->get(Relation::INNER_KEY),
-            ])
+            ]),
         );
     }
 }

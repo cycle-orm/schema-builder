@@ -57,11 +57,7 @@ final class GenerateRelations implements GeneratorInterface
     /** @var RelationInterface[] */
     private $relations = [];
 
-    /**
-     * @param array|null $relations
-     * @param OptionSchema|null $optionSchema
-     */
-    public function __construct(array $relations = null, OptionSchema $optionSchema = null)
+    public function __construct(?array $relations = null, ?OptionSchema $optionSchema = null)
     {
         $relations = $relations ?? self::getDefaultRelations();
         $this->options = $optionSchema ?? new OptionSchema(self::OPTION_MAP);
@@ -71,8 +67,8 @@ final class GenerateRelations implements GeneratorInterface
                 throw new \InvalidArgumentException(
                     sprintf(
                         'Invalid relation type, RelationInterface excepted, `%s` given',
-                        is_object($relation) ? get_class($relation) : gettype($relation)
-                    )
+                        is_object($relation) ? get_class($relation) : gettype($relation),
+                    ),
                 );
             }
 
@@ -80,11 +76,6 @@ final class GenerateRelations implements GeneratorInterface
         }
     }
 
-    /**
-     * @param Registry $registry
-     *
-     * @return Registry
-     */
     public function run(Registry $registry): Registry
     {
         foreach ($registry as $entity) {
@@ -98,10 +89,21 @@ final class GenerateRelations implements GeneratorInterface
         return $registry;
     }
 
-    /**
-     * @param Registry $registry
-     * @param Entity $entity
-     */
+    protected static function getDefaultRelations(): array
+    {
+        return [
+            'embedded' => new Definition\Embedded(),
+            'belongsTo' => new Definition\BelongsTo(),
+            'hasOne' => new Definition\HasOne(),
+            'hasMany' => new Definition\HasMany(),
+            'refersTo' => new Definition\RefersTo(),
+            'manyToMany' => new Definition\ManyToMany(),
+            'belongsToMorphed' => new Definition\Morphed\BelongsToMorphed(),
+            'morphedHasOne' => new Definition\Morphed\MorphedHasOne(),
+            'morphedHasMany' => new Definition\Morphed\MorphedHasMany(),
+        ];
+    }
+
     protected function register(Registry $registry, Entity $entity): void
     {
         $role = $entity->getRole();
@@ -112,7 +114,7 @@ final class GenerateRelations implements GeneratorInterface
                 $name,
                 $role,
                 $r->getTarget(),
-                $this->options->withOptions($r->getOptions())
+                $this->options->withOptions($r->getOptions()),
             );
 
             // compute relation values (field names, related entities and etc)
@@ -122,7 +124,7 @@ final class GenerateRelations implements GeneratorInterface
                 throw new SchemaException(
                     "Unable to compute relation `{$role}`.`{$name}`",
                     $e->getCode(),
-                    $e
+                    $e,
                 );
             }
 
@@ -130,10 +132,6 @@ final class GenerateRelations implements GeneratorInterface
         }
     }
 
-    /**
-     * @param Registry $registry
-     * @param Entity $entity
-     */
     protected function inverse(Registry $registry, Entity $entity): void
     {
         foreach ($entity->getRelations() as $name => $r) {
@@ -155,7 +153,7 @@ final class GenerateRelations implements GeneratorInterface
                     $inversed = $schema->inverseRelation(
                         $this->initRelation($inverseType),
                         $inverseName,
-                        $r->getInverseLoad()
+                        $r->getInverseLoad(),
                     );
 
                     $registry->registerRelation($target, $inverseName, $inversed);
@@ -163,18 +161,13 @@ final class GenerateRelations implements GeneratorInterface
                     throw new SchemaException(
                         "Unable to inverse relation `{$entity->getRole()}`.`{$name}`",
                         $e->getCode(),
-                        $e
+                        $e,
                     );
                 }
             }
         }
     }
 
-    /**
-     * @param string $type
-     *
-     * @return RelationInterface
-     */
     protected function initRelation(string $type): RelationInterface
     {
         if (!isset($this->relations[$type])) {
@@ -182,23 +175,5 @@ final class GenerateRelations implements GeneratorInterface
         }
 
         return $this->relations[$type];
-    }
-
-    /**
-     * @return array
-     */
-    protected static function getDefaultRelations(): array
-    {
-        return [
-            'embedded' => new Definition\Embedded(),
-            'belongsTo' => new Definition\BelongsTo(),
-            'hasOne' => new Definition\HasOne(),
-            'hasMany' => new Definition\HasMany(),
-            'refersTo' => new Definition\RefersTo(),
-            'manyToMany' => new Definition\ManyToMany(),
-            'belongsToMorphed' => new Definition\Morphed\BelongsToMorphed(),
-            'morphedHasOne' => new Definition\Morphed\MorphedHasOne(),
-            'morphedHasMany' => new Definition\Morphed\MorphedHasMany(),
-        ];
     }
 }

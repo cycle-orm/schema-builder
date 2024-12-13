@@ -24,9 +24,8 @@ final class Defaults implements \ArrayAccess
             SchemaInterface::SOURCE => Source::class,
             SchemaInterface::SCOPE => null,
             SchemaInterface::TYPECAST_HANDLER => null,
-        ]
-    ) {
-    }
+        ],
+    ) {}
 
     /**
      * @param array<int, mixed> $defaults

@@ -211,17 +211,17 @@ abstract class HasManyRelationCompositePKTest extends BaseTest
 
         $this->assertSame(
             'user',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['user_p_id', 'user_p_slug'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 
@@ -249,17 +249,17 @@ abstract class HasManyRelationCompositePKTest extends BaseTest
 
         $this->assertSame(
             'user',
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['user_p_id', 'user_p_slug'],
-            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['plain'][Schema::RELATIONS]['user'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 }

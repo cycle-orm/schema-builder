@@ -15,7 +15,6 @@ use Cycle\Schema\Exception\SchemaModifierException;
 use Cycle\Schema\Exception\TableInheritance\DiscriminatorColumnNotPresentException;
 use Cycle\Schema\Exception\TableInheritance\WrongDiscriminatorColumnException;
 use Cycle\Schema\Exception\TableInheritance\WrongParentKeyColumnException;
-use Throwable;
 
 final class Compiler
 {
@@ -37,8 +36,8 @@ final class Compiler
                     sprintf(
                         'Invalid generator `%s`. It should implement `%s` interface.',
                         \is_object($generator) ? $generator::class : \var_export($generator, true),
-                        GeneratorInterface::class
-                    )
+                        GeneratorInterface::class,
+                    ),
                 );
             }
 
@@ -126,16 +125,16 @@ final class Compiler
             \assert($modifier instanceof SchemaModifierInterface);
             try {
                 $modifier->modifySchema($schema);
-            } catch (Throwable $e) {
+            } catch (\Throwable $e) {
                 throw new SchemaModifierException(
                     sprintf(
                         'Unable to apply schema modifier `%s` for the `%s` role. %s',
                         $modifier::class,
                         $role,
-                        $e->getMessage()
+                        $e->getMessage(),
                     ),
-                    (int)$e->getCode(),
-                    $e
+                    (int) $e->getCode(),
+                    $e,
                 );
             }
         }
@@ -172,11 +171,11 @@ final class Compiler
             }
             try {
                 $comparator->compare();
-            } catch (Throwable $e) {
+            } catch (\Throwable $e) {
                 throw new Exception\CompilerException(sprintf(
                     "Error compiling the `%s` role.\n\n%s",
                     $entity->getRole() ?? 'unknown',
-                    $e->getMessage()
+                    $e->getMessage(),
                 ), (int) $e->getCode());
             }
         }

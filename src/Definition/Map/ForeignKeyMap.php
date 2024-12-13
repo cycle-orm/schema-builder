@@ -18,16 +18,6 @@ final class ForeignKeyMap implements \IteratorAggregate, \Countable
      */
     private array $foreignKeys = [];
 
-    /**
-     * Cloning.
-     */
-    public function __clone()
-    {
-        foreach ($this->foreignKeys as $index => $foreignKey) {
-            $this->foreignKeys[$index] = clone $foreignKey;
-        }
-    }
-
     public function has(ForeignKey $foreignKey): bool
     {
         return isset($this->foreignKeys[$this->generateIdentifier($foreignKey)]);
@@ -58,6 +48,16 @@ final class ForeignKeyMap implements \IteratorAggregate, \Countable
     }
 
     /**
+     * Cloning.
+     */
+    public function __clone()
+    {
+        foreach ($this->foreignKeys as $index => $foreignKey) {
+            $this->foreignKeys[$index] = clone $foreignKey;
+        }
+    }
+
+    /**
      * @return non-empty-string
      */
     private function generateIdentifier(ForeignKey $foreignKey): string
@@ -66,7 +66,7 @@ final class ForeignKeyMap implements \IteratorAggregate, \Countable
             '%s:%s:%s',
             $foreignKey->getTarget(),
             \implode(',', $foreignKey->getInnerColumns()),
-            \implode(',', $foreignKey->getOuterColumns())
+            \implode(',', $foreignKey->getOuterColumns()),
         );
     }
 }

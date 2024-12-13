@@ -37,7 +37,7 @@ final class RenderModifiers implements GeneratorInterface
                 throw new SchemaException(
                     sprintf('Unable to render modifier `%s` for the `%s` role.', $modifier::class, $role),
                     $e->getCode(),
-                    $e
+                    $e,
                 );
             }
         }

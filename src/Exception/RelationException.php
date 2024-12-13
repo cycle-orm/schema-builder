@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace Cycle\Schema\Exception;
 
-class RelationException extends SchemaModifierException
-{
-}
+class RelationException extends SchemaModifierException {}

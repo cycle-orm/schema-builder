@@ -15,7 +15,7 @@ class WrongDiscriminatorColumnException extends TableInheritanceException implem
         parent::__construct(sprintf(
             'Discriminator column `%s` is not found among fields of the `%s` role.',
             $discriminatorColumn,
-            (string)($this->entity->getRole() ?? $this->entity->getClass())
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
         ));
     }
 
@@ -30,8 +30,8 @@ class WrongDiscriminatorColumnException extends TableInheritanceException implem
 
         return sprintf(
             'You have to specify one of the defined fields of the `%s` role: `%s`',
-            (string)($this->entity->getRole() ?? $this->entity->getClass()),
-            $fields
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
+            $fields,
         );
     }
 }

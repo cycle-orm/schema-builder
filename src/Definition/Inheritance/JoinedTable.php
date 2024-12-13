@@ -11,9 +11,8 @@ final class JoinedTable extends Inheritance
 {
     public function __construct(
         private Entity $parent,
-        private ?string $outerKey = null
-    ) {
-    }
+        private ?string $outerKey = null,
+    ) {}
 
     public function getOuterKey(): ?string
     {

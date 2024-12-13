@@ -8,11 +8,7 @@ use Cycle\ORM\Parser\TypecastInterface;
 
 class Typecaster implements TypecastInterface
 {
-    public function cast(array $values): array
-    {
-    }
+    public function cast(array $values): array {}
 
-    public function setRules(array $rules): array
-    {
-    }
+    public function setRules(array $rules): array {}
 }

@@ -125,32 +125,32 @@ abstract class ManyToManyRelationCompositePKTest extends BaseTest
         $this->assertSame('tag', $schema['post'][Schema::RELATIONS]['tags'][Relation::TARGET]);
         $this->assertSame(
             Relation::MANY_TO_MANY,
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::TYPE]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::TYPE],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::INNER_KEY],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['post_p_id', 'post_p_slug'],
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_INNER_KEY]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_INNER_KEY],
         );
 
         $this->assertSame(
             ['tag_p_id', 'tag_p_slug'],
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_OUTER_KEY]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_OUTER_KEY],
         );
 
         $this->assertSame(
             'tagContext',
-            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_ENTITY]
+            $schema['post'][Schema::RELATIONS]['tags'][Relation::SCHEMA][Relation::THROUGH_ENTITY],
         );
     }
 
@@ -253,32 +253,32 @@ abstract class ManyToManyRelationCompositePKTest extends BaseTest
         $this->assertSame('post', $schema['tag'][Schema::RELATIONS]['posts'][Relation::TARGET]);
         $this->assertSame(
             Relation::MANY_TO_MANY,
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::TYPE]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::TYPE],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::INNER_KEY],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['tag_p_id', 'tag_p_slug'],
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_INNER_KEY]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_INNER_KEY],
         );
 
         $this->assertSame(
             ['post_p_id', 'post_p_slug'],
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_OUTER_KEY]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_OUTER_KEY],
         );
 
         $this->assertSame(
             'tagContext',
-            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_ENTITY]
+            $schema['tag'][Schema::RELATIONS]['posts'][Relation::SCHEMA][Relation::THROUGH_ENTITY],
         );
     }
 }

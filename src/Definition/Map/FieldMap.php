@@ -6,7 +6,6 @@ namespace Cycle\Schema\Definition\Map;
 
 use Cycle\Schema\Definition\Field;
 use Cycle\Schema\Exception\FieldException;
-use Traversable;
 
 /**
  * Manage the set of fields associated with the entity.
@@ -18,19 +17,6 @@ final class FieldMap implements \IteratorAggregate, \Countable
     /** @var Field[] */
     private $fields = [];
 
-    /**
-     * Cloning.
-     */
-    public function __clone()
-    {
-        foreach ($this->fields as $name => $field) {
-            $this->fields[$name] = clone $field;
-        }
-    }
-
-    /**
-     * @return int
-     */
     public function count(): int
     {
         return count($this->fields);
@@ -54,11 +40,6 @@ final class FieldMap implements \IteratorAggregate, \Countable
         return array_keys($this->fields);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
     public function has(string $name): bool
     {
         return isset($this->fields[$name]);
@@ -118,12 +99,6 @@ final class FieldMap implements \IteratorAggregate, \Countable
         throw new FieldException("Undefined field with column name `{$name}`.");
     }
 
-    /**
-     * @param string $name
-     * @param Field  $field
-     *
-     * @return FieldMap
-     */
     public function set(string $name, Field $field): self
     {
         if ($this->has($name)) {
@@ -135,19 +110,24 @@ final class FieldMap implements \IteratorAggregate, \Countable
         return $this;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return FieldMap
-     */
     public function remove(string $name): self
     {
         unset($this->fields[$name]);
         return $this;
     }
 
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->fields);
+    }
+
+    /**
+     * Cloning.
+     */
+    public function __clone()
+    {
+        foreach ($this->fields as $name => $field) {
+            $this->fields[$name] = clone $field;
+        }
     }
 }

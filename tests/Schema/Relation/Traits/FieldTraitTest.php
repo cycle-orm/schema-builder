@@ -18,20 +18,9 @@ class FieldTraitTest extends TestCase
 
     /** @var OptionSchema */
     private $options;
+
     /** @var string */
     private $source;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->options = (new OptionSchema([]))->withTemplate([
-            123 => 'id',
-            234 => ['id', 'slug'],
-        ]);
-
-        $this->source = 'test';
-    }
 
     public function testGetsFieldShouldReturnFieldIfItExists(): void
     {
@@ -111,7 +100,7 @@ class FieldTraitTest extends TestCase
     public function testEnsureFieldIfFieldNotExistsItShouldBeCreated(
         string $originalType,
         string $type,
-        bool $nullable
+        bool $nullable,
     ): void {
         $target = new Entity();
 
@@ -166,9 +155,18 @@ class FieldTraitTest extends TestCase
         ];
     }
 
-    /**
-     * @return OptionSchema
-     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->options = (new OptionSchema([]))->withTemplate([
+            123 => 'id',
+            234 => ['id', 'slug'],
+        ]);
+
+        $this->source = 'test';
+    }
+
     protected function getOptions(): OptionSchema
     {
         return $this->options;

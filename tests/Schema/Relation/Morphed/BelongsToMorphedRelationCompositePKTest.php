@@ -80,7 +80,7 @@ abstract class BelongsToMorphedRelationCompositePKTest extends BaseTest
         $this->assertArrayHasKey('morphed', $schema);
         $this->assertSame(
             Relation::BELONGS_TO_MORPHED,
-            $schema['morphed'][Schema::RELATIONS]['parent'][Relation::TYPE]
+            $schema['morphed'][Schema::RELATIONS]['parent'][Relation::TYPE],
         );
 
         $this->assertArrayHasKey('morphed', $schema);
@@ -175,33 +175,33 @@ abstract class BelongsToMorphedRelationCompositePKTest extends BaseTest
         $this->assertArrayHasKey('morphed', $schema['author'][Schema::RELATIONS]);
         $this->assertSame(
             Relation::MORPHED_HAS_ONE,
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::TYPE]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::TYPE],
         );
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY],
         );
         $this->assertSame(
             'parent_role',
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY],
         );
 
         $this->assertArrayHasKey('morphed', $schema['post'][Schema::RELATIONS]);
         $this->assertSame(
             Relation::MORPHED_HAS_ONE,
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::TYPE]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::TYPE],
         );
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY],
         );
         $this->assertSame(
             ['parent_p_id', 'parent_p_slug'],
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
         $this->assertSame(
             'parent_role',
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY],
         );
     }
 
@@ -230,29 +230,29 @@ abstract class BelongsToMorphedRelationCompositePKTest extends BaseTest
         $this->assertArrayHasKey('morphed', $schema['author'][Schema::RELATIONS]);
         $this->assertSame(
             Relation::MORPHED_HAS_MANY,
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::TYPE]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::TYPE],
         );
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY],
         );
         $this->assertSame(
             'parent_role',
-            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY]
+            $schema['author'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY],
         );
 
         $this->assertArrayHasKey('morphed', $schema['post'][Schema::RELATIONS]);
         $this->assertSame(
             Relation::MORPHED_HAS_MANY,
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::TYPE]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::TYPE],
         );
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::INNER_KEY],
         );
         $this->assertSame(
             'parent_role',
-            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY]
+            $schema['post'][Schema::RELATIONS]['morphed'][Relation::SCHEMA][Relation::MORPH_KEY],
         );
     }
 }

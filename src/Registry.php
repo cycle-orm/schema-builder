@@ -10,7 +10,6 @@ use Cycle\Schema\Exception\RelationException;
 use Cycle\Database\DatabaseProviderInterface;
 use Cycle\Database\Exception\DBALException;
 use Cycle\Database\Schema\AbstractTable;
-use Traversable;
 
 /**
  * @implements \IteratorAggregate<Entity>
@@ -19,15 +18,13 @@ final class Registry implements \IteratorAggregate
 {
     /** @var Entity[] */
     private array $entities = [];
+
     private DatabaseProviderInterface $dbal;
     private \SplObjectStorage $tables;
     private \SplObjectStorage $children;
     private \SplObjectStorage $relations;
     private Defaults $defaults;
 
-    /**
-     * @param DatabaseProviderInterface $dbal
-     */
     public function __construct(DatabaseProviderInterface $dbal, ?Defaults $defaults = null)
     {
         $this->dbal = $dbal;
@@ -85,7 +82,7 @@ final class Registry implements \IteratorAggregate
         throw new RegistryException("Undefined entity `{$role}`");
     }
 
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->entities);
     }
@@ -161,7 +158,7 @@ final class Registry implements \IteratorAggregate
             }
         }
 
-        if (null === $schema) {
+        if ($schema === null) {
             $dbTable = $this->dbal->database($database)->table($table);
             if (!\method_exists($dbTable, 'getSchema')) {
                 throw new RegistryException('Unable to retrieve table schema.');
@@ -203,9 +200,9 @@ final class Registry implements \IteratorAggregate
     }
 
     /**
+     * @return non-empty-string
      * @throws RegistryException
      *
-     * @return non-empty-string
      */
     public function getTable(Entity $entity): string
     {

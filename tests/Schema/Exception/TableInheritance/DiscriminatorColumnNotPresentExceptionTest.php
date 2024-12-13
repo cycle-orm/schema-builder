@@ -23,12 +23,12 @@ class DiscriminatorColumnNotPresentExceptionTest extends TestCase
 
         $this->assertSame(
             'Discriminator column is not present.',
-            $e->getName()
+            $e->getName(),
         );
         $this->assertSame(
             "Discriminator column is required for Single Table Inheritance schema.\n" .
             'You have to specify one of the defined fields of the `author` role: `id`, `name`',
-            $e->getSolution()
+            $e->getSolution(),
         );
     }
 }

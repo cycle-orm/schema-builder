@@ -37,8 +37,28 @@ final class Column
     private $typeOptions = [];
 
     /**
-     * @return string
+     * Parse field definition into table definition.
+     *
+     * @throws ColumnException
+     *
      */
+    public static function parse(Field $field): self
+    {
+        $column = new self();
+        $column->field = $field;
+
+        if (!preg_match(self::DEFINITION, $field->getType(), $type)) {
+            throw new ColumnException("Invalid column type declaration in `{$field->getType()}`");
+        }
+
+        $column->type = $type['type'];
+        if (!empty($type['options'])) {
+            $column->typeOptions = array_map('trim', explode(',', $type['options'] ?? ''));
+        }
+
+        return $column;
+    }
+
     public function getName(): string
     {
         return $this->field->getColumn();
@@ -47,24 +67,17 @@ final class Column
     /**
      * Get column type.
      *
-     * @return string
      */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function isPrimary(): bool
     {
         return $this->field->isPrimary() || in_array($this->type, ['primary', 'bigPrimary']);
     }
 
-    /**
-     * @return bool
-     */
     public function isNullable(): bool
     {
         if ($this->hasDefault() && $this->getDefault() === null) {
@@ -74,9 +87,6 @@ final class Column
         return $this->hasOption(self::OPT_NULLABLE) && !$this->isPrimary();
     }
 
-    /**
-     * @return bool
-     */
     public function hasDefault(): bool
     {
         if ($this->isPrimary()) {
@@ -87,9 +97,9 @@ final class Column
     }
 
     /**
+     * @return mixed
      * @throws ColumnException
      *
-     * @return mixed
      */
     public function getDefault()
     {
@@ -102,8 +112,6 @@ final class Column
 
     /**
      * Render column definition.
-     *
-     * @param AbstractColumn $column
      *
      * @throws ColumnException
      */
@@ -122,7 +130,7 @@ final class Column
             throw new ColumnException(
                 "Invalid column type definition in '{$column->getTable()}'.'{$column->getName()}'",
                 (int) $e->getCode(),
-                $e
+                $e,
             );
         }
 
@@ -144,33 +152,6 @@ final class Column
     }
 
     /**
-     * Parse field definition into table definition.
-     *
-     * @param Field $field
-     *
-     * @throws ColumnException
-     *
-     * @return Column
-     */
-    public static function parse(Field $field): self
-    {
-        $column = new self();
-        $column->field = $field;
-
-        if (!preg_match(self::DEFINITION, $field->getType(), $type)) {
-            throw new ColumnException("Invalid column type declaration in `{$field->getType()}`");
-        }
-
-        $column->type = $type['type'];
-        if (!empty($type['options'])) {
-            $column->typeOptions = array_map('trim', explode(',', $type['options'] ?? ''));
-        }
-
-        return $column;
-    }
-
-    /**
-     * @param AbstractColumn $column
      *
      * @return bool|float|int|string
      */
@@ -197,11 +178,6 @@ final class Column
         return '';
     }
 
-    /**
-     * @param string $option
-     *
-     * @return bool
-     */
     private function hasOption(string $option): bool
     {
         return $this->field->getOptions()->has($option);

@@ -75,8 +75,8 @@ class %s extends %s
                 $class->getName() . ' as ' . $baseTestName,
                 $class->getShortName(),
                 $baseTestName,
-                $driver
-            )
+                $driver,
+            ),
         );
     }
 }

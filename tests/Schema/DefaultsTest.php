@@ -13,6 +13,57 @@ use PHPUnit\Framework\TestCase;
 
 final class DefaultsTest extends TestCase
 {
+    public static function mergeDataProvider(): \Traversable
+    {
+        yield [
+            [
+                SchemaInterface::MAPPER => Mapper::class,
+                SchemaInterface::REPOSITORY => Repository::class,
+                SchemaInterface::SOURCE => Source::class,
+                SchemaInterface::SCOPE => null,
+                SchemaInterface::TYPECAST_HANDLER => null,
+            ],
+            [],
+        ];
+        yield [
+            [
+                SchemaInterface::MAPPER => Mapper::class,
+                SchemaInterface::REPOSITORY => Repository::class,
+                SchemaInterface::SOURCE => Source::class,
+                SchemaInterface::SCOPE => null,
+                SchemaInterface::TYPECAST_HANDLER => null,
+                'foo' => 'bar',
+            ],
+            [
+                'foo' => 'bar',
+            ],
+        ];
+        yield [
+            [
+                SchemaInterface::MAPPER => Mapper::class,
+                SchemaInterface::REPOSITORY => Repository::class,
+                SchemaInterface::SOURCE => Source::class,
+                SchemaInterface::SCOPE => null,
+                SchemaInterface::TYPECAST_HANDLER => 'foo',
+            ],
+            [
+                SchemaInterface::TYPECAST_HANDLER => 'foo',
+            ],
+        ];
+        yield [
+            [
+                SchemaInterface::MAPPER => null,
+                SchemaInterface::REPOSITORY => Repository::class,
+                SchemaInterface::SOURCE => Source::class,
+                SchemaInterface::SCOPE => null,
+                SchemaInterface::TYPECAST_HANDLER => null,
+            ],
+            [
+                SchemaInterface::MAPPER => null,
+            ],
+        ];
+    }
+
     public function testDefaultValues(): void
     {
         $defaults = new Defaults();
@@ -68,56 +119,5 @@ final class DefaultsTest extends TestCase
         $this->assertTrue($defaults->offsetExists(SchemaInterface::MAPPER));
         $defaults->offsetUnset(SchemaInterface::MAPPER);
         $this->assertFalse($defaults->offsetExists(SchemaInterface::MAPPER));
-    }
-
-    public static function mergeDataProvider(): \Traversable
-    {
-        yield [
-            [
-                SchemaInterface::MAPPER => Mapper::class,
-                SchemaInterface::REPOSITORY => Repository::class,
-                SchemaInterface::SOURCE => Source::class,
-                SchemaInterface::SCOPE => null,
-                SchemaInterface::TYPECAST_HANDLER => null,
-            ],
-            [],
-        ];
-        yield [
-            [
-                SchemaInterface::MAPPER => Mapper::class,
-                SchemaInterface::REPOSITORY => Repository::class,
-                SchemaInterface::SOURCE => Source::class,
-                SchemaInterface::SCOPE => null,
-                SchemaInterface::TYPECAST_HANDLER => null,
-                'foo' => 'bar',
-            ],
-            [
-                'foo' => 'bar',
-            ],
-        ];
-        yield [
-            [
-                SchemaInterface::MAPPER => Mapper::class,
-                SchemaInterface::REPOSITORY => Repository::class,
-                SchemaInterface::SOURCE => Source::class,
-                SchemaInterface::SCOPE => null,
-                SchemaInterface::TYPECAST_HANDLER => 'foo',
-            ],
-            [
-                SchemaInterface::TYPECAST_HANDLER => 'foo',
-            ],
-        ];
-        yield [
-            [
-                SchemaInterface::MAPPER => null,
-                SchemaInterface::REPOSITORY => Repository::class,
-                SchemaInterface::SOURCE => Source::class,
-                SchemaInterface::SCOPE => null,
-                SchemaInterface::TYPECAST_HANDLER => null,
-            ],
-            [
-                SchemaInterface::MAPPER => null,
-            ],
-        ];
     }
 }
