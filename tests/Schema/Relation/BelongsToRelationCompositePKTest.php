@@ -215,17 +215,17 @@ abstract class BelongsToRelationCompositePKTest extends BaseTest
 
         $this->assertSame(
             'post',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['author_p_id', 'author_p_slug'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 
@@ -252,17 +252,17 @@ abstract class BelongsToRelationCompositePKTest extends BaseTest
 
         $this->assertSame(
             'post',
-            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::TARGET],
         );
 
         $this->assertSame(
             ['author_p_id', 'author_p_slug'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::OUTER_KEY],
         );
 
         $this->assertSame(
             ['p_id', 'p_slug'],
-            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY]
+            $schema['author'][Schema::RELATIONS]['post'][Relation::SCHEMA][Relation::INNER_KEY],
         );
     }
 }

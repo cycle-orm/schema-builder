@@ -27,8 +27,6 @@ interface SchemaModifierInterface
     /**
      * Render needed indexes and foreign keys into table.
      *
-     * @param Registry $registry
-     *
      * @throws SchemaModifierException
      * @throws DBALException
      */

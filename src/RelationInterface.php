@@ -25,6 +25,6 @@ interface RelationInterface extends SchemaModifierInterface
         string $name,
         string $source,
         string $target,
-        OptionSchema $options
+        OptionSchema $options,
     ): self;
 }

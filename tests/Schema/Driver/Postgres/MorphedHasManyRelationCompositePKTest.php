@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\Postgres;
 
 use Cycle\Schema\Tests\Relation\Morphed\MorphedHasManyRelationCompositePKTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-postgres
+ */
 class MorphedHasManyRelationCompositePKTest extends BaseTest
 {
     public const DRIVER = 'postgres';

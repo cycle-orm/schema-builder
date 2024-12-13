@@ -15,7 +15,7 @@ class WrongParentKeyColumnException extends TableInheritanceException implements
         parent::__construct(sprintf(
             'Outer key column `%s` is not found among fields of the `%s` role.',
             $outerKey,
-            (string)($this->entity->getRole() ?? $this->entity->getClass())
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
         ));
     }
 
@@ -30,8 +30,8 @@ class WrongParentKeyColumnException extends TableInheritanceException implements
 
         return sprintf(
             'You have to specify one of the defined fields of the `%s` role: `%s`',
-            (string)($this->entity->getRole() ?? $this->entity->getClass()),
-            $fields
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
+            $fields,
         );
     }
 }

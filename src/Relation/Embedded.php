@@ -22,9 +22,6 @@ final class Embedded extends RelationSchema
         self::EMBEDDED_PREFIX => '',
     ];
 
-    /**
-     * @param Registry $registry
-     */
     public function compute(Registry $registry): void
     {
         $source = $registry->getEntity($this->source);
@@ -68,9 +65,6 @@ final class Embedded extends RelationSchema
         parent::compute($registry);
     }
 
-    /**
-     * @param Registry $registry
-     */
     public function render(Registry $registry): void
     {
         // relation does not require any column rendering besides actual tables

@@ -1,35 +1,62 @@
 {
-  "name": "cycle/schema-builder",
-  "type": "library",
-  "license": "MIT",
-  "description": "Cycle ORM Schema Builder",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "require": {
-    "php": ">=8.0",
-    "cycle/orm": "^2.7",
-    "cycle/database": "^2.7.1",
-    "yiisoft/friendly-exception": "^1.1"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^9.5",
-    "spiral/tokenizer": "^2.8",
-    "vimeo/psalm": "^5.12",
-    "symfony/console": "^6.0 || ^7.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Cycle\\Schema\\": "src/"
+    "name": "cycle/schema-builder",
+    "type": "library",
+    "license": "MIT",
+    "description": "Cycle ORM Schema Builder",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Anton Titov (wolfy-j)",
+            "email": "wolfy-j@spiralscout.com"
+        },
+        {
+            "name": "Aleksei Gagarin (roxblnfk)",
+            "email": "alexey.gagarin@spiralscout.com"
+        },
+        {
+            "name": "Pavel Butchnev (butschster)",
+            "email": "pavel.buchnev@spiralscout.com"
+        },
+        {
+            "name": "Maksim Smakouz (msmakouz)",
+            "email": "maksim.smakouz@spiralscout.com"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/cycle"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "cycle/orm": "^2.7",
+        "cycle/database": "^2.7.1",
+        "yiisoft/friendly-exception": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "spiral/tokenizer": "^2.8",
+        "vimeo/psalm": "^5.12",
+        "symfony/console": "^6.0 || ^7.0",
+        "spiral/code-style": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cycle\\Schema\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cycle\\Schema\\Tests\\": "tests/Schema/"
+        }
+    },
+    "scripts": {
+        "cs:diff": "php-cs-fixer fix --dry-run -v --diff",
+        "cs:fix": "php-cs-fixer fix -v",
+        "psalm": "psalm",
+        "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
+        "test": "phpunit --color=always"
     }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "2.9.x-dev"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Cycle\\Schema\\Tests\\": "tests/Schema/"
-    }
-  }
 }

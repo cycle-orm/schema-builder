@@ -6,7 +6,11 @@ namespace Cycle\Schema\Tests\Driver\Postgres;
 
 use Cycle\Schema\Tests\Generator\ForeignKeysTest as BaseTest;
 
-final class ForeignKeysTest extends BaseTest
+/**
+ * @group driver
+ * @group driver-postgres
+ */
+class ForeignKeysTest extends BaseTest
 {
     public const DRIVER = 'postgres';
 }

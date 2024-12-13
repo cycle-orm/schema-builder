@@ -35,27 +35,11 @@ final class Relation
         $this->options = new OptionMap();
     }
 
-    /**
-     * Cloning.
-     */
-    public function __clone()
-    {
-        $this->options = clone $this->options;
-    }
-
-    /**
-     * @return OptionMap
-     */
     public function getOptions(): OptionMap
     {
         return $this->options;
     }
 
-    /**
-     * @param string $type
-     *
-     * @return Relation
-     */
     public function setType(string $type): self
     {
         $this->type = $type;
@@ -63,9 +47,6 @@ final class Relation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         if ($this->type === null) {
@@ -78,7 +59,6 @@ final class Relation
     /**
      * @param non-empty-string $target
      *
-     * @return Relation
      */
     public function setTarget(string $target): self
     {
@@ -99,13 +79,6 @@ final class Relation
         return $this->target;
     }
 
-    /**
-     * @param string $into
-     * @param string $as
-     * @param int    $load
-     *
-     * @return Relation
-     */
     public function setInverse(string $into, string $as, ?int $load = null): self
     {
         $this->inverse = $into;
@@ -115,35 +88,31 @@ final class Relation
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isInversed(): bool
     {
         return $this->inverse !== null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getInverseName(): ?string
     {
         return $this->inverse;
     }
 
-    /**
-     * @return string|null
-     */
     public function getInverseType(): ?string
     {
         return $this->inverseType;
     }
 
-    /**
-     * @return int|null
-     */
     public function getInverseLoad(): ?int
     {
         return $this->inverseLoad;
+    }
+
+    /**
+     * Cloning.
+     */
+    public function __clone()
+    {
+        $this->options = clone $this->options;
     }
 }

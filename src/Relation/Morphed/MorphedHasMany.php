@@ -46,9 +46,6 @@ final class MorphedHasMany extends RelationSchema
         RelationSchema::MORPH_KEY_LENGTH => 32,
     ];
 
-    /**
-     * @param Registry $registry
-     */
     public function compute(Registry $registry): void
     {
         parent::compute($registry);
@@ -69,7 +66,7 @@ final class MorphedHasMany extends RelationSchema
             $target,
             $this->options->get(Relation::MORPH_KEY),
             $this->options->get(RelationSchema::MORPH_KEY_LENGTH),
-            $this->options->get(Relation::NULLABLE)
+            $this->options->get(Relation::NULLABLE),
         );
     }
 

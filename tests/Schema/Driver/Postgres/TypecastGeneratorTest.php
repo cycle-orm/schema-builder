@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\Postgres;
 
 use Cycle\Schema\Tests\Generator\TypecastGeneratorTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-postgres
+ */
 class TypecastGeneratorTest extends BaseTest
 {
     public const DRIVER = 'postgres';

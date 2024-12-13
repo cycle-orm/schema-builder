@@ -19,11 +19,11 @@ trait MorphTrait
      *
      * @psalm-assert class-string $interface
      *
-     * @return Entity[]|Generator
+     * @return Entity[]|\Generator
      *
      * @psalm-return Generator<int, Entity>
      */
-    protected function findTargets(Registry $registry, string $interface): Generator
+    protected function findTargets(Registry $registry, string $interface): \Generator
     {
         foreach ($registry as $entity) {
             $class = $entity->getClass();
@@ -38,9 +38,9 @@ trait MorphTrait
     /**
      * @param non-empty-string $interface
      *
+     * @return array Tuple [name, Field]
      * @throws RelationException
      *
-     * @return array Tuple [name, Field]
      */
     protected function findOuterKey(Registry $registry, string $interface): array
     {
@@ -52,7 +52,7 @@ trait MorphTrait
             $primaryFields = $entity->getPrimaryFields();
             $primaryKeys = $this->getPrimaryColumns($entity);
 
-            if (null === $keys) {
+            if ($keys === null) {
                 $keys = $primaryKeys;
                 $fields = $primaryFields;
                 $prevEntity = $entity;
@@ -62,12 +62,12 @@ trait MorphTrait
                     $entity->getRole() ?? 'unknown',
                     implode(',', $primaryKeys),
                     $prevEntity->getRole() ?? 'unknown',
-                    implode(',', $keys)
+                    implode(',', $keys),
                 ));
             }
         }
 
-        if (null === $fields) {
+        if ($fields === null) {
             throw new RelationException('Unable to find morphed parent.');
         }
 
@@ -106,7 +106,7 @@ trait MorphTrait
                 static function (FieldMap $map): array {
                     return $map->getColumnNames();
                 },
-                $mergeMaps
+                $mergeMaps,
             ));
 
             if (count($index) > 0) {

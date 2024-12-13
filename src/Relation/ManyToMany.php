@@ -84,7 +84,7 @@ final class ManyToMany extends RelationSchema implements InversableInterface
             throw new RelationException(sprintf(
                 'Relation ManyToMany must have the throughEntity declaration (%s => ? => %s).',
                 $source->getRole(),
-                $target->getRole()
+                $target->getRole(),
             ));
         }
 
@@ -94,7 +94,7 @@ final class ManyToMany extends RelationSchema implements InversableInterface
             throw new RelationException(sprintf(
                 'Relation ManyToMany can only link entities from same database (%s, %s).',
                 $source->getRole(),
-                $target->getRole()
+                $target->getRole(),
             ));
         }
 
@@ -102,7 +102,7 @@ final class ManyToMany extends RelationSchema implements InversableInterface
             throw new RelationException(sprintf(
                 'Relation ManyToMany can only link entities from same database (%s, %s)',
                 $source->getRole(),
-                $through->getRole()
+                $through->getRole(),
             ));
         }
 
@@ -113,20 +113,17 @@ final class ManyToMany extends RelationSchema implements InversableInterface
             $source,
             Relation::INNER_KEY,
             $through,
-            Relation::THROUGH_INNER_KEY
+            Relation::THROUGH_INNER_KEY,
         );
 
         $this->createRelatedFields(
             $target,
             Relation::OUTER_KEY,
             $through,
-            Relation::THROUGH_OUTER_KEY
+            Relation::THROUGH_OUTER_KEY,
         );
     }
 
-    /**
-     * @param Registry $registry
-     */
     public function render(Registry $registry): void
     {
         $source = $registry->getEntity($this->source);
@@ -156,7 +153,7 @@ final class ManyToMany extends RelationSchema implements InversableInterface
                 $through,
                 $sourceFields,
                 $throughSourceFields,
-                $this->options->get(self::INDEX_CREATE)
+                $this->options->get(self::INDEX_CREATE),
             );
             $this->createForeignCompositeKey(
                 $registry,
@@ -164,13 +161,12 @@ final class ManyToMany extends RelationSchema implements InversableInterface
                 $through,
                 $targetFields,
                 $throughTargetFields,
-                $this->options->get(self::INDEX_CREATE)
+                $this->options->get(self::INDEX_CREATE),
             );
         }
     }
 
     /**
-     * @param Registry $registry
      *
      * @return Entity[]
      */
@@ -182,13 +178,9 @@ final class ManyToMany extends RelationSchema implements InversableInterface
     }
 
     /**
-     * @param RelationInterface $relation
-     * @param string $into
-     * @param int|null $load
      *
      * @throws RelationException
      *
-     * @return RelationInterface
      */
     public function inverseRelation(RelationInterface $relation, string $into, ?int $load = null): RelationInterface
     {
@@ -210,7 +202,7 @@ final class ManyToMany extends RelationSchema implements InversableInterface
                 Relation::OUTER_KEY => $this->options->get(Relation::INNER_KEY),
                 Relation::THROUGH_INNER_KEY => $this->options->get(Relation::THROUGH_OUTER_KEY),
                 Relation::THROUGH_OUTER_KEY => $this->options->get(Relation::THROUGH_INNER_KEY),
-            ])
+            ]),
         );
     }
 }

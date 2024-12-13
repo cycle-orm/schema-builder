@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Cycle\Schema\Definition\Comparator;
 
 use Cycle\Schema\Definition\Field;
-use Exception;
-use InvalidArgumentException;
 
 final class FieldComparator
 {
     private $columnName;
+
     /** @var Field[] */
     private $fields = [];
 
@@ -20,7 +19,7 @@ final class FieldComparator
             $this->columnName = $field->getColumn();
         }
         if ($this->columnName !== $field->getColumn()) {
-            throw new InvalidArgumentException('The field comparator only accepts fields with the same column name.');
+            throw new \InvalidArgumentException('The field comparator only accepts fields with the same column name.');
         }
         $this->fields[$key] = $field;
         return $this;
@@ -33,9 +32,9 @@ final class FieldComparator
         }
         // Check options
         if (!$this->compareOptions() || !$this->compareProperties()) {
-            throw new Exception(
+            throw new \Exception(
                 "Different definitions are specified for the `$this->columnName` column:"
-                . "\n\n{$this->generateErrorText()}"
+                . "\n\n{$this->generateErrorText()}",
             );
         }
     }

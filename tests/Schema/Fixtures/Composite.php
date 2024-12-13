@@ -24,7 +24,7 @@ class Composite
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         return $entity;
@@ -38,7 +38,7 @@ class Composite
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setColumn('id')
+            (new Field())->setColumn('id'),
         );
 
         return $entity;

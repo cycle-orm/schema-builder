@@ -18,7 +18,7 @@ class Plain
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         return $entity;
@@ -32,7 +32,7 @@ class Plain
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setColumn('id')
+            (new Field())->setColumn('id'),
         );
 
         return $entity;
@@ -44,7 +44,7 @@ class Plain
 
         $entity->getFields()->set(
             'p_slug',
-            (new Field())->setType('string')->setColumn('slug')->setPrimary(true)
+            (new Field())->setType('string')->setColumn('slug')->setPrimary(true),
         );
 
         return $entity;

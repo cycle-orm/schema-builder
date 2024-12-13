@@ -18,12 +18,12 @@ class MorphedTo
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         $entity->getRelations()->set(
             'parent',
-            (new Relation())->setTarget(ParentInterface::class)->setType('belongsToMorphed')
+            (new Relation())->setTarget(ParentInterface::class)->setType('belongsToMorphed'),
         );
 
         return $entity;

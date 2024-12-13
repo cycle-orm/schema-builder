@@ -14,6 +14,10 @@ use Cycle\Schema\Tests\Fixtures\Author;
 use Cycle\Schema\Tests\Fixtures\Post;
 use Cycle\Schema\Tests\Relation\BelongsToRelationTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-sqlite
+ */
 class BelongsToRelationTest extends BaseTest
 {
     public const DRIVER = 'sqlite';

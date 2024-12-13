@@ -17,12 +17,12 @@ class Author implements AuthorInterface, ParentInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         $entity->getFields()->set(
             'p_name',
-            (new Field())->setType('string(32)')->setColumn('author_name')
+            (new Field())->setType('string(32)')->setColumn('author_name'),
         );
 
         return $entity;
@@ -43,7 +43,7 @@ class Author implements AuthorInterface, ParentInterface
 
         $entity->getFields()->set(
             'p_user_id',
-            (new Field())->setType('int(11)')->setColumn('user_id')
+            (new Field())->setType('int(11)')->setColumn('user_id'),
         );
 
         return $entity;
@@ -55,7 +55,7 @@ class Author implements AuthorInterface, ParentInterface
 
         $entity->getFields()->set(
             'p_slug',
-            (new Field())->setType('string')->setColumn('slug')->setPrimary(true)
+            (new Field())->setType('string')->setColumn('slug')->setPrimary(true),
         );
 
         return $entity;

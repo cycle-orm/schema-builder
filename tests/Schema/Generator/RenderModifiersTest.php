@@ -21,7 +21,7 @@ class RenderModifiersTest extends TestCase
     public function testEntityShouldBeRendered()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -51,11 +51,11 @@ class RenderModifiersTest extends TestCase
     {
         $this->expectException(SchemaException::class);
         $this->expectExceptionMessage(
-            'Unable to render modifier `Cycle\Schema\Tests\Fixtures\BrokenSchemaModifier` for the `user` role.'
+            'Unable to render modifier `Cycle\Schema\Tests\Fixtures\BrokenSchemaModifier` for the `user` role.',
         );
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();

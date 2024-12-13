@@ -28,12 +28,12 @@ abstract class BaseTest extends TestCase
 {
     // currently active driver
     public const DRIVER = null;
+
     // tests configuration
     public static $config;
 
     // cross test driver cache
     public static $driverCache = [];
-
     protected static $lastORM;
 
     /** @var Driver */
@@ -49,6 +49,33 @@ abstract class BaseTest extends TestCase
     protected $logger;
 
     /**
+     * Calculates missing parameters for typecasting.
+     *
+     * @return \Cycle\ORM\ORMInterface|ORM
+     */
+    public function withSchema(SchemaInterface $schema)
+    {
+        $this->orm = $this->orm->withSchema($schema);
+        return $this->orm;
+    }
+
+    public function getDriver(): Driver
+    {
+        if (isset(static::$driverCache[static::DRIVER])) {
+            return static::$driverCache[static::DRIVER];
+        }
+
+        $config = self::$config[static::DRIVER];
+        if (!isset($this->driver)) {
+            $this->driver = $config->driver::create($config);
+        }
+
+        $this->driver->setProfiling(true);
+
+        return static::$driverCache[static::DRIVER] = $this->driver;
+    }
+
+    /**
      * Init all we need.
      */
     public function setUp(): void
@@ -60,16 +87,16 @@ abstract class BaseTest extends TestCase
             new Database(
                 'default',
                 '',
-                $this->getDriver()
-            )
+                $this->getDriver(),
+            ),
         );
 
         $this->dbal->addDatabase(
             new Database(
                 'secondary',
                 'secondary_',
-                $this->getDriver()
-            )
+                $this->getDriver(),
+            ),
         );
 
         $this->logger = new TestLogger();
@@ -89,9 +116,9 @@ abstract class BaseTest extends TestCase
         $this->orm = new ORM(
             new Factory(
                 $this->dbal,
-                RelationConfig::getDefault()
+                RelationConfig::getDefault(),
             ),
-            new Schema([])
+            new Schema([]),
         );
     }
 
@@ -106,50 +133,12 @@ abstract class BaseTest extends TestCase
         $this->dbal = null;
     }
 
-    /**
-     * Calculates missing parameters for typecasting.
-     *
-     * @param SchemaInterface $schema
-     *
-     * @return \Cycle\ORM\ORMInterface|ORM
-     */
-    public function withSchema(SchemaInterface $schema)
-    {
-        $this->orm = $this->orm->withSchema($schema);
-        return $this->orm;
-    }
-
-    /**
-     * @return Driver
-     */
-    public function getDriver(): Driver
-    {
-        if (isset(static::$driverCache[static::DRIVER])) {
-            return static::$driverCache[static::DRIVER];
-        }
-
-        $config = self::$config[static::DRIVER];
-        if (!isset($this->driver)) {
-            $this->driver = $config->driver::create($config);
-        }
-
-        $this->driver->setProfiling(true);
-
-        return static::$driverCache[static::DRIVER] = $this->driver;
-    }
-
-    /**
-     * @return Database
-     */
     protected function getDatabase(): Database
     {
         return $this->dbal->database('default');
     }
 
-    /**
-     * @param Database|null $database
-     */
-    protected function dropDatabase(Database $database = null): void
+    protected function dropDatabase(?Database $database = null): void
     {
         if (empty($database)) {
             return;
@@ -177,7 +166,7 @@ abstract class BaseTest extends TestCase
      */
     protected function enableProfiling(): void
     {
-        if (null !== $this->logger) {
+        if ($this->logger !== null) {
             $this->logger->display();
         }
     }
@@ -187,7 +176,7 @@ abstract class BaseTest extends TestCase
      */
     protected function disableProfiling(): void
     {
-        if (null !== $this->logger) {
+        if ($this->logger !== null) {
             $this->logger->hide();
         }
     }

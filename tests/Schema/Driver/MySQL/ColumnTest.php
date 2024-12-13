@@ -8,6 +8,10 @@ use Cycle\Schema\Definition\Field;
 use Cycle\Schema\Table\Column;
 use Cycle\Schema\Tests\ColumnTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-mysql
+ */
 class ColumnTest extends BaseTest
 {
     public const DRIVER = 'mysql';

@@ -21,7 +21,7 @@ class JoinedTableInheritanceTest extends TestCase
     public function testJoinedTableShouldBeAddedToSchema()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -45,7 +45,7 @@ class JoinedTableInheritanceTest extends TestCase
     public function testJoinedTableWithoutOuterKeyShouldBeAddedToSchema()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -72,7 +72,7 @@ class JoinedTableInheritanceTest extends TestCase
         $this->expectExceptionMessage('Outer key column `foo_bar` is not found among fields of the `user` role.');
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();

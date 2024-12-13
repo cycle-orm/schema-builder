@@ -10,9 +10,7 @@ use Cycle\Schema\SchemaModifierInterface;
 
 class BrokenSchemaModifier implements SchemaModifierInterface
 {
-    public function __construct(private string $brokenMethod)
-    {
-    }
+    public function __construct(private string $brokenMethod) {}
 
     public function withRole(string $role): static
     {

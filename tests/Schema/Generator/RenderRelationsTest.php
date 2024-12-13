@@ -31,7 +31,7 @@ abstract class RenderRelationsTest extends BaseTest
         null|false|string $fkActionOption,
         null|false|string $onDeleteOption,
         string $onUpdateExpected,
-        string $onDeleteExpected
+        string $onDeleteExpected,
     ): void {
         $plain = Plain::define();
         $user = User::define();

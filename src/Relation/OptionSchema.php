@@ -12,28 +12,10 @@ use Cycle\Schema\Exception\OptionException;
 final class OptionSchema
 {
     private array $options = [];
-
     private array $template = [];
-
     private array $context = [];
 
-    public function __construct(private array $aliases)
-    {
-    }
-
-    public function __debugInfo(): array
-    {
-        $result = [];
-
-        foreach ($this->template as $option => $value) {
-            $value = $this->get($option);
-
-            $alias = array_search($option, $this->aliases, true);
-            $result[$alias] = $value;
-        }
-
-        return $result;
-    }
+    public function __construct(private array $aliases) {}
 
     /**
      * Get available options
@@ -125,6 +107,20 @@ final class OptionSchema
         }
 
         return $value;
+    }
+
+    public function __debugInfo(): array
+    {
+        $result = [];
+
+        foreach ($this->template as $option => $value) {
+            $value = $this->get($option);
+
+            $alias = array_search($option, $this->aliases, true);
+            $result[$alias] = $value;
+        }
+
+        return $result;
     }
 
     /**

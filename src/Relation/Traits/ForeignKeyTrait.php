@@ -22,7 +22,7 @@ trait ForeignKeyTrait
         Entity $target,
         Field $innerField,
         Field $outerField,
-        bool $indexCreate = true
+        bool $indexCreate = true,
     ): void {
         if ($registry->getDatabase($source) !== $registry->getDatabase($target)) {
             return;
@@ -44,7 +44,7 @@ trait ForeignKeyTrait
         Entity $target,
         FieldMap $innerFields,
         FieldMap $outerFields,
-        bool $indexCreate = true
+        bool $indexCreate = true,
     ): void {
         if ($registry->getDatabase($source) !== $registry->getDatabase($target)) {
             return;

@@ -53,6 +53,9 @@ foreach ($classes as $class) {
     echo "Found {$class->getName()}\n";
     foreach ($databases as $driver => $details) {
         $filename = sprintf('%s/%s.php', $details['directory'], $class->getShortName());
+        if (\file_exists($filename)) {
+            continue;
+        }
         $baseTestName = 'BaseTest';
 
         file_put_contents(
@@ -66,6 +69,10 @@ namespace %s;
 
 use %s;
 
+/**
+ * @group driver
+ * @group driver-%s
+ */
 class %s extends %s
 {
     public const DRIVER = '%s';
@@ -73,10 +80,11 @@ class %s extends %s
 ",
                 $details['namespace'],
                 $class->getName() . ' as ' . $baseTestName,
+                $driver,
                 $class->getShortName(),
                 $baseTestName,
-                $driver
-            )
+                $driver,
+            ),
         );
     }
 }

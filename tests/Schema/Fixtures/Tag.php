@@ -17,12 +17,12 @@ class Tag implements ParentInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('bigPrimary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('bigPrimary')->setColumn('id')->setPrimary(true),
         );
 
         $entity->getFields()->set(
             'p_name',
-            (new Field())->setType('string(32)')->setColumn('name')
+            (new Field())->setType('string(32)')->setColumn('name'),
         );
 
         return $entity;
@@ -36,7 +36,7 @@ class Tag implements ParentInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setColumn('id')
+            (new Field())->setColumn('id'),
         );
 
         return $entity;
@@ -48,7 +48,7 @@ class Tag implements ParentInterface
 
         $entity->getFields()->set(
             'p_slug',
-            (new Field())->setType('string')->setColumn('slug')->setPrimary(true)
+            (new Field())->setType('string')->setColumn('slug')->setPrimary(true),
         );
 
         return $entity;

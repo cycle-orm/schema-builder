@@ -14,11 +14,6 @@ use Cycle\Database\Schema\AbstractColumn;
  */
 final class GenerateTypecast implements GeneratorInterface
 {
-    /**
-     * @param Registry $registry
-     *
-     * @return Registry
-     */
     public function run(Registry $registry): Registry
     {
         foreach ($registry as $entity) {
@@ -31,8 +26,6 @@ final class GenerateTypecast implements GeneratorInterface
     /**
      * Automatically clarify column types based on table column types.
      *
-     * @param Registry $registry
-     * @param Entity   $entity
      */
     protected function compute(Registry $registry, Entity $entity): void
     {
@@ -54,7 +47,6 @@ final class GenerateTypecast implements GeneratorInterface
     }
 
     /**
-     * @param AbstractColumn $column
      *
      * @return callable-array|string|null
      */

@@ -48,7 +48,7 @@ abstract class TableGeneratorTest extends BaseTest
             (new RenderTables())->run($r),
             defaults: [
                 Schema::TYPECAST_HANDLER => 'default_typecaster',
-            ]
+            ],
         );
 
         $this->assertSame([
@@ -85,7 +85,7 @@ abstract class TableGeneratorTest extends BaseTest
             (new RenderTables())->run($r),
             defaults: [
                 Schema::TYPECAST_HANDLER => Typecaster::class,
-            ]
+            ],
         );
 
         $this->assertSame([

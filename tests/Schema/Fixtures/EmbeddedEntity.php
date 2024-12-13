@@ -24,7 +24,7 @@ class EmbeddedEntity
 
         $entity->getFields()->set(
             'p_embedded',
-            (new Field())->setType('string')->setColumn('embedded_column')
+            (new Field())->setType('string')->setColumn('embedded_column'),
         );
 
         return $entity;

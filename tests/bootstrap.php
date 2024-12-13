@@ -27,9 +27,9 @@ $drivers = [
             host: '127.0.0.1',
             port: 13306,
             user: 'root',
-            password: 'root',
+            password: 'YourStrong!Passw0rd',
         ),
-        queryCache: true
+        queryCache: true,
     ),
     'postgres' => new Config\PostgresDriverConfig(
         connection: new Config\Postgres\TcpConnectionConfig(
@@ -37,7 +37,7 @@ $drivers = [
             host: '127.0.0.1',
             port: 15432,
             user: 'postgres',
-            password: 'postgres',
+            password: 'YourStrong!Passw0rd',
         ),
         schema: 'public',
         queryCache: true,
@@ -48,9 +48,9 @@ $drivers = [
             host: '127.0.0.1',
             port: 11433,
             user: 'SA',
-            password: 'SSpaSS__1'
+            password: 'YourStrong!Passw0rd',
         ),
-        queryCache: true
+        queryCache: true,
     ),
 ];
 
@@ -62,5 +62,5 @@ $db = getenv('DB') ?: null;
 ] + (
     $db === null
         ? $drivers
-        : array_intersect_key($drivers, array_flip((array)$db))
+        : array_intersect_key($drivers, array_flip((array) $db))
 );

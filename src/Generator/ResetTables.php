@@ -12,11 +12,6 @@ use Cycle\Schema\Registry;
  */
 final class ResetTables implements GeneratorInterface
 {
-    /**
-     * @param Registry $registry
-     *
-     * @return Registry
-     */
     public function run(Registry $registry): Registry
     {
         foreach ($registry as $entity) {

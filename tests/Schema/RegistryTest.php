@@ -121,7 +121,7 @@ abstract class RegistryTest extends BaseTest
 
         $e->getFields()->set(
             'id',
-            (new Field())->setType('primary')->setColumn('id')
+            (new Field())->setType('primary')->setColumn('id'),
         );
 
         $r = new Registry($this->dbal);
@@ -132,12 +132,12 @@ abstract class RegistryTest extends BaseTest
 
         $c->getFields()->set(
             'id',
-            (new Field())->setType('primary')->setColumn('id')
+            (new Field())->setType('primary')->setColumn('id'),
         );
 
         $c->getFields()->set(
             'name',
-            (new Field())->setType('string')->setColumn('name')
+            (new Field())->setType('string')->setColumn('name'),
         );
 
         $this->expectException(RegistryException::class);
@@ -153,7 +153,7 @@ abstract class RegistryTest extends BaseTest
 
         $e->getFields()->set(
             'id',
-            (new Field())->setType('primary')->setColumn('id')
+            (new Field())->setType('primary')->setColumn('id'),
         );
 
         $r = new Registry($this->dbal);
@@ -165,12 +165,12 @@ abstract class RegistryTest extends BaseTest
 
         $c->getFields()->set(
             'id',
-            (new Field())->setType('primary')->setColumn('id')
+            (new Field())->setType('primary')->setColumn('id'),
         );
 
         $c->getFields()->set(
             'name',
-            (new Field())->setType('string')->setColumn('name')
+            (new Field())->setType('string')->setColumn('name'),
         );
 
         $r->registerChild($e, $c);

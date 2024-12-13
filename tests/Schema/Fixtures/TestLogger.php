@@ -13,7 +13,6 @@ class TestLogger implements LoggerInterface
     use LoggerTrait;
 
     private $display;
-
     private $countWrites;
     private $countReads;
 

@@ -6,7 +6,11 @@ namespace Cycle\Schema\Tests\Driver\SQLServer;
 
 use Cycle\Schema\Tests\Generator\PrintChangesTest as BaseTest;
 
-final class PrintChangesTest extends BaseTest
+/**
+ * @group driver
+ * @group driver-sqlserver
+ */
+class PrintChangesTest extends BaseTest
 {
     public const DRIVER = 'sqlserver';
 }

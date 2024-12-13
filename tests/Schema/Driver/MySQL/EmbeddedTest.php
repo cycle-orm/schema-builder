@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\MySQL;
 
 use Cycle\Schema\Tests\Relation\EmbeddedTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-mysql
+ */
 class EmbeddedTest extends BaseTest
 {
     public const DRIVER = 'mysql';

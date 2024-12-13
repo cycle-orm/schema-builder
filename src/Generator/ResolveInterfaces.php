@@ -15,11 +15,6 @@ final class ResolveInterfaces implements GeneratorInterface
     // option to indicate that static link resolution is required
     public const STATIC_LINK = 'staticLink';
 
-    /**
-     * @param Registry $registry
-     *
-     * @return Registry
-     */
     public function run(Registry $registry): Registry
     {
         foreach ($registry as $entity) {
@@ -30,8 +25,6 @@ final class ResolveInterfaces implements GeneratorInterface
     }
 
     /**
-     * @param Registry $registry
-     * @param Entity   $entity
      *
      * @throws RelationException
      */
@@ -54,8 +47,6 @@ final class ResolveInterfaces implements GeneratorInterface
     }
 
     /**
-     * @param Registry $registry
-     * @param string   $target
      *
      * @return non-empty-string
      */

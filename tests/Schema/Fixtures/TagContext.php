@@ -17,7 +17,7 @@ class TagContext
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('bigPrimary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('bigPrimary')->setColumn('id')->setPrimary(true),
         );
 
         return $entity;

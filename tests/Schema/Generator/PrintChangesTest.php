@@ -22,22 +22,6 @@ abstract class PrintChangesTest extends BaseTest
     private PrintChanges $generator;
     private Compiler $compiler;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->output = new BufferedOutput();
-        $this->user = User::define();
-
-        $this->registry = new Registry($this->dbal);
-        $this->registry->register($this->user);
-        $this->registry->linkTable($this->user, 'default', 'users');
-
-        $this->generator = new PrintChanges($this->output);
-
-        $this->compiler = new Compiler();
-    }
-
     public function testRunWithoutChanges(): void
     {
         $this->compiler->compile($this->registry, [new RenderTables()]);
@@ -246,5 +230,21 @@ abstract class PrintChangesTest extends BaseTest
         $this->assertStringContainsString('- alter foreign key on [friend_id]', $content);
 
         $this->assertStringNotContainsString('default.users: 3 change(s) detected', $content);
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->output = new BufferedOutput();
+        $this->user = User::define();
+
+        $this->registry = new Registry($this->dbal);
+        $this->registry->register($this->user);
+        $this->registry->linkTable($this->user, 'default', 'users');
+
+        $this->generator = new PrintChanges($this->output);
+
+        $this->compiler = new Compiler();
     }
 }

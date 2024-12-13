@@ -23,7 +23,7 @@ class GenerateModifiersTest extends TestCase
     public function testEntityShouldBeModified()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -31,7 +31,7 @@ class GenerateModifiersTest extends TestCase
         $user->getFields()->set('foo_bar', (new Field())->setType('primary')->setColumn('id'));
 
         $user->addSchemaModifier(
-            new class () implements SchemaModifierInterface {
+            new class implements SchemaModifierInterface {
                 private string $role;
 
                 public function withRole(string $role): static
@@ -56,7 +56,7 @@ class GenerateModifiersTest extends TestCase
                 {
                     $schema[SchemaInterface::PARENT] = Author::class;
                 }
-            }
+            },
         );
 
         $r->register($user);
@@ -67,7 +67,7 @@ class GenerateModifiersTest extends TestCase
         $this->assertSame(Author::class, $schema['user'][SchemaInterface::PARENT]);
         $this->assertSame(
             ['foo_bar' => 'id', 'type' => 'type'],
-            $schema['user'][SchemaInterface::COLUMNS]
+            $schema['user'][SchemaInterface::COLUMNS],
         );
     }
 
@@ -78,11 +78,11 @@ class GenerateModifiersTest extends TestCase
     {
         $this->expectException(SchemaException::class);
         $this->expectExceptionMessage(
-            'Unable to compute modifier `Cycle\Schema\Tests\Fixtures\BrokenSchemaModifier` for the `user` role.'
+            'Unable to compute modifier `Cycle\Schema\Tests\Fixtures\BrokenSchemaModifier` for the `user` role.',
         );
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();

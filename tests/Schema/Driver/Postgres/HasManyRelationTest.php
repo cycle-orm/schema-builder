@@ -14,6 +14,10 @@ use Cycle\Schema\Tests\Fixtures\Plain;
 use Cycle\Schema\Tests\Fixtures\User;
 use Cycle\Schema\Tests\Relation\HasManyRelationTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-postgres
+ */
 class HasManyRelationTest extends BaseTest
 {
     public const DRIVER = 'postgres';

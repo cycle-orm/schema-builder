@@ -70,15 +70,15 @@ final class Entity
     private array|string|null $typecast = null;
 
     private array $schema = [];
-
     private FieldMap $fields;
-
     private RelationMap $relations;
     private FieldMap $primaryFields;
     private array $schemaModifiers = [];
     private ?Inheritance $inheritance = null;
+
     /** @var class-string|null */
     private ?string $stiParent = null;
+
     private ForeignKeyMap $foreignKeys;
 
     public function __construct()
@@ -88,18 +88,6 @@ final class Entity
         $this->primaryFields = new FieldMap();
         $this->relations = new RelationMap();
         $this->foreignKeys = new ForeignKeyMap();
-    }
-
-    /**
-     * Full entity copy.
-     */
-    public function __clone()
-    {
-        $this->options = clone $this->options;
-        $this->fields = clone $this->fields;
-        $this->primaryFields = clone $this->primaryFields;
-        $this->relations = clone $this->relations;
-        $this->foreignKeys = clone $this->foreignKeys;
     }
 
     public function getOptions(): OptionMap
@@ -253,7 +241,7 @@ final class Entity
     public function addSchemaModifier(SchemaModifierInterface $modifier): self
     {
         $this->schemaModifiers[] = $modifier->withRole($this->role ?? throw new EntityException(
-            'Entity must have a `role` to be able to add a modifier.'
+            'Entity must have a `role` to be able to add a modifier.',
         ));
 
         return $this;
@@ -364,25 +352,6 @@ final class Entity
         return $this->primaryFields;
     }
 
-    /**
-     * @template T of object
-     *
-     * @param class-string<T>|null $class
-     *
-     * @return ($class is class-string<T> ? class-string<T> : null)
-     */
-    private function normalizeClass(string $class = null): ?string
-    {
-        if ($class === null) {
-            return null;
-        }
-
-        /** @var class-string<T> $class */
-        $class = \ltrim($class, '\\');
-
-        return $class;
-    }
-
     public function setInheritance(Inheritance $inheritance): void
     {
         $this->inheritance = $inheritance;
@@ -433,5 +402,36 @@ final class Entity
     public function setTableName(string $tableName): void
     {
         $this->tableName = $tableName;
+    }
+
+    /**
+     * Full entity copy.
+     */
+    public function __clone()
+    {
+        $this->options = clone $this->options;
+        $this->fields = clone $this->fields;
+        $this->primaryFields = clone $this->primaryFields;
+        $this->relations = clone $this->relations;
+        $this->foreignKeys = clone $this->foreignKeys;
+    }
+
+    /**
+     * @template T of object
+     *
+     * @param class-string<T>|null $class
+     *
+     * @return ($class is class-string<T> ? class-string<T> : null)
+     */
+    private function normalizeClass(?string $class = null): ?string
+    {
+        if ($class === null) {
+            return null;
+        }
+
+        /** @var class-string<T> $class */
+        $class = \ltrim($class, '\\');
+
+        return $class;
     }
 }

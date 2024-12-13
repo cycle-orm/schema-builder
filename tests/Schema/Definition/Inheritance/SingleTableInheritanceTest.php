@@ -22,7 +22,7 @@ class SingleTableInheritanceTest extends TestCase
     public function testSingleTableShouldBeAddedToSchema()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $author = new Entity();
@@ -54,7 +54,7 @@ class SingleTableInheritanceTest extends TestCase
     public function testSingleTableWithExplicitPkShouldBeAddedToSchema()
     {
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $author = new Entity();
@@ -90,7 +90,7 @@ class SingleTableInheritanceTest extends TestCase
         $this->expectExceptionMessage('Discriminator column for the `user` role should be defined.');
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -110,7 +110,7 @@ class SingleTableInheritanceTest extends TestCase
         $this->expectExceptionMessage('Discriminator column `type` is not found among fields of the `user` role.');
 
         $r = new Registry(
-            $this->createMock(DatabaseProviderInterface::class)
+            $this->createMock(DatabaseProviderInterface::class),
         );
 
         $user = new Entity();
@@ -119,7 +119,7 @@ class SingleTableInheritanceTest extends TestCase
         $inheritance->setDiscriminator('type');
         $user->getFields()->set(
             'id',
-            (new Field())->setType('primary')->setColumn('id')
+            (new Field())->setType('primary')->setColumn('id'),
         );
 
         $r->register($user);

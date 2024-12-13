@@ -19,33 +19,33 @@ class User implements AuthorInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         $entity->getFields()->set(
             'p_name',
-            (new Field())->setType('string(32)')->setColumn('user_name')
+            (new Field())->setType('string(32)')->setColumn('user_name'),
         );
 
         $entity->getFields()->set(
             'p_active',
-            (new Field())->setType('bool')->setColumn('active')
+            (new Field())->setType('bool')->setColumn('active'),
         );
 
         $entity->getFields()->set(
             'p_balance',
-            (new Field())->setType('float')->setColumn('balance')
+            (new Field())->setType('float')->setColumn('balance'),
         );
 
 
         $entity->getFields()->set(
             'p_created_at',
-            (new Field())->setType('datetime')->setColumn('created_at')
+            (new Field())->setType('datetime')->setColumn('created_at'),
         );
 
         $entity->getRelations()->set(
             'plain',
-            (new Relation())->setTarget('plain')->setType('hasOne')
+            (new Relation())->setTarget('plain')->setType('hasOne'),
         );
 
         return $entity;
@@ -57,7 +57,7 @@ class User implements AuthorInterface
 
         $entity->getFields()->set(
             'p_slug',
-            (new Field())->setType('string')->setColumn('slug')->setPrimary(true)
+            (new Field())->setType('string')->setColumn('slug')->setPrimary(true),
         );
 
         return $entity;
@@ -71,7 +71,7 @@ class User implements AuthorInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setColumn('id')
+            (new Field())->setColumn('id'),
         );
 
         return $entity;

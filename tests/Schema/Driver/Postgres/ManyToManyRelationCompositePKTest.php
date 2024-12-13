@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\Postgres;
 
 use Cycle\Schema\Tests\Relation\ManyToManyRelationCompositePKTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-postgres
+ */
 class ManyToManyRelationCompositePKTest extends BaseTest
 {
     public const DRIVER = 'postgres';

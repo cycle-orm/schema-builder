@@ -6,6 +6,10 @@ namespace Cycle\Schema\Tests\Driver\SQLServer;
 
 use Cycle\Schema\Tests\Relation\Morphed\MorphedHasOneRelationTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-sqlserver
+ */
 class MorphedHasOneRelationTest extends BaseTest
 {
     public const DRIVER = 'sqlserver';

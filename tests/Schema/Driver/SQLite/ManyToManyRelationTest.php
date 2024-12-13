@@ -16,6 +16,10 @@ use Cycle\Schema\Tests\Fixtures\Tag;
 use Cycle\Schema\Tests\Fixtures\TagContext;
 use Cycle\Schema\Tests\Relation\ManyToManyRelationTest as BaseTest;
 
+/**
+ * @group driver
+ * @group driver-sqlite
+ */
 class ManyToManyRelationTest extends BaseTest
 {
     public const DRIVER = 'sqlite';

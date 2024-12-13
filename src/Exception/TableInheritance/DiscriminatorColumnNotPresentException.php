@@ -14,7 +14,7 @@ class DiscriminatorColumnNotPresentException extends TableInheritanceException i
     {
         parent::__construct(sprintf(
             'Discriminator column for the `%s` role should be defined.',
-            (string)($this->entity->getRole() ?? $this->entity->getClass())
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
         ));
     }
 
@@ -30,8 +30,8 @@ class DiscriminatorColumnNotPresentException extends TableInheritanceException i
         return sprintf(
             "Discriminator column is required for Single Table Inheritance schema.\n" .
             'You have to specify one of the defined fields of the `%s` role: `%s`',
-            (string)($this->entity->getRole() ?? $this->entity->getClass()),
-            $fields
+            (string) ($this->entity->getRole() ?? $this->entity->getClass()),
+            $fields,
         );
     }
 }

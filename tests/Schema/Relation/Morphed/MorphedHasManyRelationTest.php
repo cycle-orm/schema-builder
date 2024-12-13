@@ -66,7 +66,7 @@ abstract class MorphedHasManyRelationTest extends BaseTest
 
         $this->assertSame(
             ArrayCollectionFactory::class,
-            $schema['user'][Schema::RELATIONS]['plain'][Relation::SCHEMA][Relation::COLLECTION_TYPE]
+            $schema['user'][Schema::RELATIONS]['plain'][Relation::SCHEMA][Relation::COLLECTION_TYPE],
         );
     }
 

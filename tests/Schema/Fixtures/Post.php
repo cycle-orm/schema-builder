@@ -18,12 +18,12 @@ class Post implements ParentInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setType('primary')->setColumn('id')->setPrimary(true)
+            (new Field())->setType('primary')->setColumn('id')->setPrimary(true),
         );
 
         $entity->getRelations()->set(
             'author',
-            (new Relation())->setTarget(Author::class)->setType('belongsTo')
+            (new Relation())->setTarget(Author::class)->setType('belongsTo'),
         );
 
         return $entity;
@@ -37,7 +37,7 @@ class Post implements ParentInterface
 
         $entity->getFields()->set(
             'p_id',
-            (new Field())->setColumn('id')
+            (new Field())->setColumn('id'),
         );
 
         return $entity;
@@ -49,7 +49,7 @@ class Post implements ParentInterface
 
         $entity->getFields()->set(
             'p_slug',
-            (new Field())->setType('string')->setColumn('slug')->setPrimary(true)
+            (new Field())->setType('string')->setColumn('slug')->setPrimary(true),
         );
 
         return $entity;

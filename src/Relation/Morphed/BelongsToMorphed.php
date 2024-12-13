@@ -47,9 +47,6 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
         RelationSchema::MORPH_KEY_LENGTH => 32,
     ];
 
-    /**
-     * @param Registry $registry
-     */
     public function compute(Registry $registry): void
     {
         // compute local key
@@ -66,7 +63,7 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
             'target:primaryKey' => $outerKeys,
         ]);
 
-        $outerKeys = array_combine($outerKeys, (array)$this->options->get(Relation::INNER_KEY));
+        $outerKeys = array_combine($outerKeys, (array) $this->options->get(Relation::INNER_KEY));
 
         // create target outer field
         foreach ($outerKeys as $key => $morphKey) {
@@ -76,16 +73,16 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
                 $source,
                 $morphKey,
                 $outerField,
-                $this->options->get(Relation::NULLABLE)
+                $this->options->get(Relation::NULLABLE),
             );
         }
 
-        foreach ((array)$this->options->get(Relation::MORPH_KEY) as $key) {
+        foreach ((array) $this->options->get(Relation::MORPH_KEY) as $key) {
             $this->ensureMorphField(
                 $source,
                 $key,
                 $this->options->get(RelationSchema::MORPH_KEY_LENGTH),
-                $this->options->get(Relation::NULLABLE)
+                $this->options->get(Relation::NULLABLE),
             );
         }
     }
@@ -100,7 +97,6 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
     }
 
     /**
-     * @param Registry $registry
      *
      * @return Entity[]
      */
@@ -110,19 +106,15 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
     }
 
     /**
-     * @param RelationInterface $relation
-     * @param string            $into
-     * @param int|null          $load
      *
      * @throws RelationException
      *
-     * @return RelationInterface
      */
     public function inverseRelation(RelationInterface $relation, string $into, ?int $load = null): RelationInterface
     {
         if (!$relation instanceof MorphedHasOne && !$relation instanceof MorphedHasMany) {
             throw new RelationException(
-                'BelongsToMorphed relation can only be inversed into MorphedHasOne or MorphedHasMany'
+                'BelongsToMorphed relation can only be inversed into MorphedHasOne or MorphedHasMany',
             );
         }
 
@@ -134,7 +126,7 @@ final class BelongsToMorphed extends RelationSchema implements InversableInterfa
                 Relation::LOAD => $load,
                 Relation::INNER_KEY => $this->options->get(Relation::OUTER_KEY),
                 Relation::OUTER_KEY => $this->options->get(Relation::INNER_KEY),
-            ])
+            ]),
         );
     }
 }

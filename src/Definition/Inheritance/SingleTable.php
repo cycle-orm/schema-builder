@@ -10,6 +10,7 @@ final class SingleTable extends Inheritance
 {
     /** @var array<non-empty-string, class-string> */
     private array $children = [];
+
     private ?string $discriminator = null;
 
     /**
